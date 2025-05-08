@@ -1,8 +1,9 @@
 import React from 'react'
  import Card from './Card'
 
-const Products = ({data}) => {
+const Products = ({data,handleCount}) => {
    console.log(data)
+  //  console.log(handleCount)
 
   return (
     <div>
@@ -11,7 +12,7 @@ const Products = ({data}) => {
             {
 
                 data.map((ele)=>(
-                    <Card key={ele.id} {...ele} />
+                    <Card key={ele.id} {...ele} handleCount={handleCount} />
                 )
                 )
             }

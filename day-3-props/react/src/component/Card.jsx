@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Card = ({title,price,images,rating}) => {
+const Card = ({title,price,images,rating,handleCount}) => {
 
 
  
@@ -21,10 +21,14 @@ const Card = ({title,price,images,rating}) => {
             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-black">{title}</h5>
         </a>
         <p class="mb-3 text-black">${price}</p>
-        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-600 rounded-lg focus:ring-4 focus:outline-none dark:hover:bg-gray-800 ">
+        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center me-4 text-white bg-gray-600 rounded-lg focus:ring-4 focus:outline-none dark:hover:bg-gray-800 ">
             Read more
             
         </a>
+        <button onClick ={handleCount} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-600 rounded-lg focus:ring-4 focus:outline-none dark:hover:bg-gray-800 ">
+          count
+            
+        </button>
     </div>
 </div>
 
