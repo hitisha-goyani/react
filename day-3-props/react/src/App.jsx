@@ -13,20 +13,22 @@ function App() {
 
 
   function handleCount(){
-
-    setNum(num+1)
+      setNum(num+1)
   }
+
+
   const logo = {
-    img:"https://flowbite.com/docs/images/logo.svg",
-    text: "flowbite"
+          img:"https://flowbite.com/docs/images/logo.svg",
+          text: "flowbite"
   }
 
   return (
     <>
-    <h1>this is count</h1>
-<Navbar  logo={logo} len={products.length} num={num} />
-   <Products data={products} handleCount={handleCount}/>
-   {/* <button onClick={handleCount}>click</button> */}
+
+    <Navbar  logo={logo} len={products.length} num={num} />
+
+    <Products data={products} handleCount={handleCount}/>
+
     </>
   )
 }
