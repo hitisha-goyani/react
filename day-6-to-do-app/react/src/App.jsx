@@ -27,9 +27,10 @@ function App() {
 
         setTodo(newtodo)
        } 
+              
         function handleDelete(id) {
-    let filteredTodos = todo.filter((ele) => ele.id !== id)
-    setTodo(filteredTodos)
+          let filtertodo= todo.filter((ele) => ele.id !== id)
+          setTodo(filtertodo)
   }
 
 
@@ -49,7 +50,7 @@ function App() {
 
               <h3 className='font-bold'>{ele.task}</h3>
               <button className='bg-indigo-400 p-2 rounded-md ' onClick={()=> handleUpdate(ele.id)}>{ele.status ? "completed" :  "not completed"} </button>
-              <button  className='bg-red-500' onClick={()=>handleDelete(ele.id)}>delete</button>
+              <button  className='bg-red-500 p-2 rounded-md ' onClick={()=>handleDelete(ele.id)}>delete</button>
               </div>
           ))
         }
