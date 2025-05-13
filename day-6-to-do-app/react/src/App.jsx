@@ -52,28 +52,31 @@ function App() {
   return (
     <>
     <h1 className='font-bold text-center text-3xl'>To-do-app</h1>
-      <div className='w-5xl m-auto border flex flex-col gap-4 p-4 my-5'>
+      <div className='w-5xl m-auto border flex  gap-4 p-4 my-5'>
         <input className='border ' type="text" onChange={(e)=> setTO(e.target.value)} placeholder='enter work .......'/>
          <button onClick={handleTodo} className='border bg-gray-400 w-24 p-2 rounded-2xl'>  {editid !== "" ? "Update" : "Add"}</button>
         
         
       </div>
 
-      <div className='border w-5xl my-5 gap-5 flex flex-col mx-auto p-3 rounded-2xl bg-blue-300'>
+
+   <div className='border w-5xl  items-center my-5 gap-x-50 gap-y-5 flex flex-col mx-auto p-3 rounded-2xl bg-blue-300'>
         {
           todo.map((ele) =>
           (
               <div key={ele.id} className='flex gap-5'>
+              
+                  <div className='text-center text-xl'>  <h3 className='font-bold'>{ele.task}</h3></div>
                 
-              <h3 className='font-bold'>{ele.task}</h3>
-              <button className='bg-indigo-400 p-2 rounded-md ' onClick={()=> handleUpdate(ele.id)}>{ele.status ? "completed" :  "not completed"} </button>
-              <button  className='bg-red-500 p-2 rounded-md ' onClick={()=>handleDelete(ele.id)}>delete</button>
+              <button className='bg-indigo-400 p-2 rounded-md ' onClick={()=> handleUpdate(ele.id)}>{ele.status ? "completed 👍" :  "not completed 👎"} </button>
+              <button  className='bg-red-500 p-2 rounded-md ' onClick={()=>handleDelete(ele.id)}>Delete</button>
                 <button className='bg-yellow-400 p-2 rounded-md'onClick={() => handleEdit(ele.id)}>Edit</button>
-              </div>
+                </div>
+              
+              
           ))
         }
-      </div>
-
+      </div>  
     
     </>           
   )
