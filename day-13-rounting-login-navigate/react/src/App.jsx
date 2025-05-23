@@ -13,6 +13,7 @@ import About from './pages/About'
 import Product from './pages/product'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Footer from './component/Footer'
 
 
 
@@ -66,17 +67,20 @@ function App() {
 
 
             <Routes>
-                <Route path="/" element={<Login  setAuth={setAuth}/>}/> 
+                <Route path="/" element={<Login setAuth={setAuth}/>}/> 
               <Route  path="/home" element={<Home/>} />
               <Route path="/contact" element={<Contact/>} />
               <Route path="/product" element={<Product  data={products} addCart={addCart} />} />
               <Route path="/about" element={<About/>}/>
-              <Route path="/cart" element={<Cart  cart={cart}/>}/>
+              <Route path="/cart" element={<Cart cart={cart}/>}/>
               <Route path="/register" element={<Register/>} />
-
-
+              
             </Routes> 
+
+           
       </BrowserRouter>
+
+       <Footer/>
 
     </>
   )
