@@ -1,9 +1,9 @@
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { AcademicCapIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { NoteContext } from "../../context/NoteContext";
 
 const NoteList = () => {
-  const { list } = useContext(NoteContext);
+  const { list,handleDel,handleUpdate} = useContext(NoteContext);
   return (
     <>
       <div className="grid grid-cols-4 gap-2">
@@ -14,12 +14,15 @@ const NoteList = () => {
             <p className={ele.status ? "text-green-600" : "text-red-600"}>
               {ele.status ? <span>Completed</span> : <span>Not Completed</span>}
             </p>
-            <button className=" rounded-full p-1 bg-gray-100 hover:bg-gray-200">
+            <button onClick={()=>handleDel(ele.id)} className=" rounded-full p-1 bg-gray-100 hover:bg-gray-200">
               <TrashIcon className="size-5 text-red-400" />
+            </button>
+             <button onClick={()=>handleUpdate(ele.id)} className=" rounded-full p-1 bg-gray-100 hover:bg-gray-200 ms-2">
+              <PencilSquareIcon className="size-5 text-amber-400" />
             </button>
           </div>
         ))
-        }
+        } 
       </div>
     </>
   );

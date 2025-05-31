@@ -7,6 +7,7 @@ export const NoteContext = createContext();
 const NoteContextProvider = ({ children }) => {
   const [task, setTask] = useState("");
   const [list, setList] = useState([]);
+
  
 
   function handleChange(e) {
@@ -24,11 +25,24 @@ const NoteContextProvider = ({ children }) => {
     ])                                                              
     toast("task added successfully...........")
   }
+
+  function handleDel(id){
+    const del = list.filter((ele) =>ele.id !== id)
+    setList(del)
+    toast.info("Task Deleted......")
+  }
+
+  function handleUpdate(id){
+     let newtodo = list.map((ele)=>ele.id == id ? {...ele , status :!ele.status} : ele)
+        setList(newtodo)
+        toast.success("Task updated successfully!");
+
+  }
   
-  console.log(list)
+  
   return (
     <div>
-      <NoteContext.Provider value={{ handleChange, handleTask, task, list }}>
+      <NoteContext.Provider value={{ handleChange, handleTask,handleUpdate,handleDel, task, list }}>
         {children}
       </NoteContext.Provider>
     </div>                                                      
