@@ -1,4 +1,4 @@
-import React, { Children, createContext, useState } from "react";
+import React, { Children, createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
@@ -8,10 +8,25 @@ const NoteContextProvider = ({ children }) => {
   const [task, setTask] = useState("");
   const [list, setList] = useState([]);
   const [edit, setEdit] = useState("");
+  const [theme, setTheme] = useState("dark");
+  const [count, setCount] = useState(false);
+  const [note, setNote] = useState("");
+  const [num, setNum] = useState(0);
+
+  useEffect(() => {
+    document.querySelector("html").classList = theme;
+  }, [theme]);
 
   function handleChange(e) {
     setTask(e.target.value);
-  } 
+    if(!num){
+        setCount(true);
+    }
+  
+  }
+  function handleTodo(e, index) {
+   console.log(e.target.value)
+  }
 
   function handleTask() {
     setList([
@@ -19,6 +34,7 @@ const NoteContextProvider = ({ children }) => {
       {
         id: uuidv4(),
         task,
+        note,
         status: false,
       },
     ]);
@@ -27,13 +43,14 @@ const NoteContextProvider = ({ children }) => {
     setTask("");
   }
 
-
-
   function handleDel(id) {
     const del = list.filter((ele) => ele.id !== id);
     setList(del);
     toast.info("Task Deleted......");
   }
+  const newInput = () =>{
+  setNum(prev => prev +1 )
+}
 
   function handleEdit(ele) {
     console.log(ele);
@@ -49,6 +66,8 @@ const NoteContextProvider = ({ children }) => {
       return ele;
     });
 
+
+
     // let newList = list.map((ele) => ele.id == upId ? {...ele, task: task}  : ele )
 
     setList(newList);
@@ -63,8 +82,6 @@ const NoteContextProvider = ({ children }) => {
     );
   }
 
- 
-
   return (
     <div>
       <NoteContext.Provider
@@ -75,9 +92,19 @@ const NoteContextProvider = ({ children }) => {
           handleDel,
           handleUpdate,
           handleStatus,
+          newInput,
           task,
           list,
           edit,
+          count,
+          note,
+          num,
+          setNum,
+          setNote,
+          setCount,
+          setTheme,
+          handleTodo,
+          
         }}
       >
         {children}
@@ -88,8 +115,7 @@ const NoteContextProvider = ({ children }) => {
 
 export default NoteContextProvider;
 
-
-
-
-
-
+// export const useTodo = () => {
+//   const todoCont = useContext(NoteContext);
+//   return todoCont
+// }

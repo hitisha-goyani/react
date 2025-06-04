@@ -65,7 +65,7 @@ export default NoteInput;
 
 
 
-// import { useContext, useRef, useEffect } from "react";
+
 // import { NoteContext } from "../../context/NoteContext";
 
 // const NoteInput = () => {
