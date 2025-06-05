@@ -25,6 +25,7 @@ const NoteContextProvider = ({ children }) => {
   
   }
   function handleTodo(e, index) {
+    
    console.log(e.target.value)
   }
 
