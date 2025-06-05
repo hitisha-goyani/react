@@ -32,9 +32,15 @@ const NoteList = () => {
                   <span>Not Completed</span>
                 )}
               </p>
-              {ele.note && 
-              <p>{ele.note}</p>
-              }
+              {ele.note && <p>{ele.note}</p>}
+
+              {ele.todos &&  (
+                <ul className="list-disc ml-6 mt-2 text-sm text-gray-600">
+                  {ele.todos.map((ele, index) => (
+                    <li key={index}>{ele}</li>
+                  ))}
+                </ul>
+              )}
 
               <button
                 onClick={() => handleDel(ele.id)}

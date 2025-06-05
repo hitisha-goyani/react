@@ -12,6 +12,7 @@ const NoteContextProvider = ({ children }) => {
   const [count, setCount] = useState(false);
   const [note, setNote] = useState("");
   const [num, setNum] = useState(0);
+  const [todoList, setTodoList] = useState([]); 
 
   useEffect(() => {
     document.querySelector("html").classList = theme;
@@ -21,12 +22,15 @@ const NoteContextProvider = ({ children }) => {
     setTask(e.target.value);
     if(!num){
         setCount(true);
-    }
+    } 
   
   }
   function handleTodo(e, index) {
-    
-   console.log(e.target.value)
+   
+   const newtodo = [...todoList]
+   newtodo[index] = e.target.value;
+   setTodoList(newtodo);
+
   }
 
   function handleTask() {
@@ -36,6 +40,7 @@ const NoteContextProvider = ({ children }) => {
         id: uuidv4(),
         task,
         note,
+        todos: todoList.filter((ele) => ele !== ""),
         status: false,
       },
     ]);
@@ -57,11 +62,19 @@ const NoteContextProvider = ({ children }) => {
     console.log(ele);
     setTask(ele.task);
     setEdit(ele.id);
+    setNote(ele.note || "")
+    setTodoList(ele.todos || [])
+ 
   }
   function handleUpdate() {
     let newList = list.map((ele) => {
       if (ele.id == edit) {
-        ele.task = task;
+        return {
+        ...ele,
+        task,
+        note,
+        todos: todoList.filter((ele) => ele !== ""),
+      };
       }
 
       return ele;
@@ -74,6 +87,10 @@ const NoteContextProvider = ({ children }) => {
     setList(newList);
     setTask("");
     setEdit("");
+    setNote("");
+    setTodoList([]);
+    setNum(0);
+   
   }
   console.log(list);
 
